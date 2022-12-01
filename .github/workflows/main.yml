@@ -24,6 +24,9 @@ jobs:
             - name: Installing
               run: yarn install
 
+            - name: Building
+              run: yarn build
+
             - name: Commiting changes
               run: |
                   cp -rf dist/* docs
