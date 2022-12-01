@@ -16,8 +16,8 @@ const config = {
     path: path.resolve(__dirname, "dist"),
   },
   devServer: {
-    open: true,
-    host: "localhost",
+    // open: true,
+    host: "0.0.0.0",
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -49,6 +49,7 @@ const config = {
   },
   resolve: {
     extensions: [".tsx", ".ts", ".jsx", ".js", "..."],
+    fallback: { path: false, fs: false }, // ammo requires `fs` and `path` for some reason
   },
 };
 
