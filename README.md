@@ -1,4 +1,6 @@
-# 🚀 Welcome to your new awesome project!
+# 🚀 Babylon.js + Ammo template (3D and physics for web)
+
+[Demo](https://slavshik.github.io/babylon-ammo-template/)
 
 This project has been created using **webpack-cli**, you can now run
 
