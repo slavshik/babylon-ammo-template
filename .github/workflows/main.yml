@@ -29,7 +29,6 @@ jobs:
 
             - name: Commiting changes
               run: |
-                  mkdir docs 2> /dev/null
                   cp -rf dist/* docs
                   if [ -z "$(git status --porcelain)" ]; then
                     echo "no changes, skip ci"
