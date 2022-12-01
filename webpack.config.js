@@ -1,6 +1,5 @@
-// Generated using webpack-cli https://github.com/webpack/webpack-cli
-
 const path = require("path");
+const CopyPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
@@ -20,6 +19,7 @@ const config = {
     host: "0.0.0.0",
   },
   plugins: [
+    new CopyPlugin({ patterns: [{ from: "assets", to: "assets" }] }),
     new HtmlWebpackPlugin({
       template: "index.html",
     }),
