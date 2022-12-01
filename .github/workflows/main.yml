@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+    workflow_dispatch:
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - name: Pulling changes
+              run: |
+                  git config user.name "GitHub Actions Bot"
+                  git config user.email "<>"
+                  git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: 16
+                  cache: "yarn"
+                  registry-url: "https://registry.npmjs.org"
+
+            - name: Installing
+              run: yarn install
+
+            - name: Commiting changes
+              run: |
+                  git add docs
+                  git commit -m "chore (docs): docs updated [ci skip]"
+                  git push https://${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
+                  git pull --ff-only 
+                  git push --follow-tags
