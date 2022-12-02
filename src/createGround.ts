@@ -6,10 +6,10 @@ import {
 } from "@babylonjs/core";
 import { scene } from "./scene";
 
-export function createGround(size = 20) {
-  const ground = MeshBuilder.CreateGround(
+export function createGround(size = 100) {
+  const ground = MeshBuilder.CreateBox(
     "ground",
-    { width: size, height: size },
+    { width: size, height: 0.1, depth: size },
     scene
   );
   const groundMaterial = new StandardMaterial("material", scene);
@@ -17,7 +17,7 @@ export function createGround(size = 20) {
   ground.material = groundMaterial;
   ground.physicsImpostor = new PhysicsImpostor(
     ground,
-    PhysicsImpostor.PlaneImpostor,
+    PhysicsImpostor.BoxImpostor,
     { mass: 0, restitution: 0.2, friction: 0.5 }
   );
   ground.receiveShadows = true;

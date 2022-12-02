@@ -13,18 +13,25 @@ scene.addCamera(camera);
 scene.addLight(light);
 
 scene.clearColor = new Color4(0, 0, 0, 1);
-
-async function main(): Promise<void> {
-  const ammo = await Ammo();
-  const physics = new AmmoJSPlugin(true, ammo);
-  scene.enablePhysics(new Vector3(0, -9.81, 0), physics);
+const createNewCube = () => {
   const cube = createCube();
   cube.rotation.x = Math.random();
   cube.rotation.y = Math.random();
   cube.rotation.z = Math.random();
+  scene.addMesh(cube);
+  return cube;
+};
+async function main(): Promise<void> {
+  const ammo = await Ammo();
+  const physics = new AmmoJSPlugin(true, ammo);
+  scene.enablePhysics(new Vector3(0, -9.81, 0), physics);
   const ground = createGround();
   scene.addMesh(ground);
-  scene.addMesh(cube);
+  const createMoreCube = () => {
+    createNewCube();
+    setTimeout(createMoreCube, 1000);
+  };
+  createMoreCube();
   engine.runRenderLoop(() => scene.render());
   window.addEventListener("resize", () => engine.resize());
   engine.resize();
