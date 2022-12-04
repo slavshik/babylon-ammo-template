@@ -12,6 +12,6 @@ const ambientLight = new HemisphericLight(
   light.intensity = 0.4;
   light.diffuse = Color3.FromHexString("#ffffff");
   const lightNode = new TransformNode("light-node", scene);
-  lightNode.position.set(5.96, 10.18, -3.51);
+  lightNode.position.set(0, 0, 5);
   light.parent = lightNode;
 export { ambientLight, light, lightNode };

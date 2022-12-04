@@ -6,7 +6,7 @@ const camera = new ArcRotateCamera(
     "camera",
     Math.PI / 4,
     Math.PI / 3,
-    8,
+    20,
     Vector3.Zero(),
     scene
   );
